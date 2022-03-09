@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Introducao a Computacao</title>
+
+<link rel="stylesheet" href="Introducao%20a%20Computacao_arquivos/style.css" type="text/css">
+</head>
+<body>
+
+<p align="right">
+<small><b><a href="http://www.ime.usp.br/mac/">Departamento de Ciência da
+Computação</a> - <a href="http://www.ime.usp.br/">IME</a> - <a href="http://www.usp.br/">USP</a></b></small><br>
+
+
+
+ 
+</p><h1>Introdução à Computação</h1>
+<h2>Primeiro Semestre de 2017</h2>
+<h3 class="center">Primeiro Exercício Programa</h3>
+<h3 class="center">Entrega: até 16 de abril de 2017</h3>
+
+
+
+<h2 class="titulo">JOGO DA COBRINHA</h2>
+
+<p>&nbsp;</p>
+<p>
+Serpente (Snake, também conhecido como "Jogo da Cobrinha") é um jogo 
+criado em 1976 para fliperamas, do qual foram  feitas várias imitações 
+em vídeo games e computadores. No fim dos anos 90, o jogo ficou muito 
+popular devido ao fato de vir  instalado em celulares da Nokia.
+</p>
+<p>
+O jogador controla uma longa e fina criatura que se arrasta pela tela, 
+coletando comida (ou algum outro item), não podendo colidir com seu 
+próprio corpo ou com as paredes que cercam a área de jogo. Cada vez que a
+ serpente come um pedaço de comida, seu rabo cresce, aumentando a 
+dificuldade do jogo. O usuário controla a direção da cabeça da serpente 
+(para cima, para baixo, esquerda e direita) e seu corpo segue. Uma 
+versão online do jogo pode ser encontrada <a href="https://playsnake.org/">aqui</a>.
+</p>
+
+
+<h2>1. O jogo (para este EP)</h2>
+
+<p>
+Neste EP, a ideia é fazer um programa em Python que permita realizar 
+apenas o movimento da cobra em um tabuleiro (e não o jogo completo). 
+Vamos considerar que a cobra tem um comprimento fixo fornecido pelo 
+usuário, de modo que seu corpo ocupará sempre a mesma quantidade de 
+casas adjacentes no tabuleiro (sua cauda estará portanto sempre a uma 
+distância fixa da cabeça).
+</p>
+
+<a id="secao2"></a>
+<h2>2. O que o seu programa deve fazer</h2>
+
+
+<p>No seu programa, a cobra deverá ser representada por três valores inteiros:</p>
+
+  <blockquote>
+    <ol>
+      <li> Posição no eixo x da cabeça da cobra no tabuleiro,
+      </li><li> Posição no eixo y da cabeça da cobra no tabuleiro,
+      </li><li> Variável <code>d</code> contendo um número inteiro, 
+sendo que cada dígito corresponde a um código de deslocamento assim 
+definido:  esquerda = 1, direita  = 2, cima = 3, baixo = 4.
+Do dígito mais significativo (mais à esquerda) ao menos significativo 
+(mais à direita), os códigos indicam a sequência de deslocamentos que 
+levam a posição da cauda da cobra até a sua cabeça.
+    </li></ol>
+  </blockquote>
+
+
+<p>Para desenhar o tabuleiro e a cobra, o seu programa deve adotar a seguinte convenção:</p>
+
+<center>
+<table>
+<tbody><tr><td><b>Elemento do cenário</b></td><td><b>Símbolo<b></b></b></td></tr>
+<tr><td>Parede</td><td>#</td></tr>
+<tr><td>Cabeça da cobra</td><td>C</td></tr>
+<tr><td>Corpo da cobra</td><td>*</td></tr>
+<tr><td>Posição livre</td><td>.</td></tr>
+</tbody></table>
+</center>
+
+
+<p><b>Exemplos</b></p>
+
+<p>A cobra x = 4, y = 1, d = 2322 de tamanho 5 seria exibida em um tabuleiro 4x8 cercado por paredes como:</p>
+
+<blockquote><font color="333333">
+<pre class="saida">##########
+#........#
+#..**C...#
+#.**.....#
+#........#
+##########
+</pre>
+</font></blockquote><font color="333333">
+</font>
+
+<font color="Red"><b>Importante:</b></font> Observe que, no tabuleiro, a
+ posição do canto superior esquerdo tem coordenadas (0,0), ou seja, o 
+eixo y cresce de cima para baixo.
+
+
+
+<p>A cobra x = 9, y = 5, d = 24223222442 de tamanho 12 seria exibida em um tabuleiro 8x16 cercado por paredes como:</p>
+
+<blockquote><font color="333333">
+<pre class="saida">##################
+#................#
+#................#
+#................#
+#..**.****.......#
+#...***..*.......#
+#........*C......#
+#................#
+#................#
+##################
+</pre>
+</font></blockquote><font color="333333">
+</font>
+
+<h3>2.1 Entradas e saídas do programa</h3>
+
+<p>Inicialmente, o programa deve solicitar ao usuário: </p>
+
+  <blockquote>
+    <ol>
+      <li> número de linhas e número de colunas do tabuleiro,
+      </li><li> a posição inicial (x, y) da cabeça da cobra,
+      </li><li> o tamanho da cobra (que deve ser maior que 1, ou seja, a cobra não pode ter apenas a cabeça).
+    </li></ol>
+  </blockquote>
+
+
+<p>O programa deve então exibir o tabuleiro com a cobra inicialmente na 
+horizontal, com a cabeça na posição dada e com a cauda à esquerda da 
+cabeça.</p>
+
+<p>Depois, o programa deve pedir que o jogador informe o número do 
+próximo movimento a ser realizado, que pode ser um dos seguintes 
+valores: 1 (esquerda), 2 (direita), 3 (cima), 4 (baixo), 5 (sair do 
+programa).  Se o jogador escolher o movimento 5, o programa deve ser 
+encerrado. Caso contrário, o programa deve processar o movimento 
+solicitado.
+Caso o jogador informe um movimento que cause colisão, o programa deve 
+imprimir uma mensagem de erro apropriada (ver exemplos na <a href="#secao4">Seção 4</a>
+ deste enunciado). Para cada movimento processado, o programa deve 
+imprimir novamente o tabuleiro refletindo a última posição válida da 
+cobra e um novo movimento deve ser solicitado ao jogador na sequência.</p>
+
+<font color="Red"><b>Importante:</b></font> Todas as saídas impressas pelo programa devem ser exatamente iguais às mostradas nos exemplos da <a href="#secao4">Seção 4</a>.
+
+
+<h3>2.2 Funções obrigatórias</h3>
+
+<p>
+  Um dos objetivos desse exercício é aprender a usar funções em Python.
+  Para isso, você deve <b>OBRIGATORIAMENTE implementar e utilizar</b>
+    as funções com os seguintes protótipos:</p>
+
+<blockquote>
+<ul>
+  <li>  <a href="https://www.ime.usp.br/%7Emac2166/python/ep1/esqueleto_ep1.py">def num_digitos(n):</a>
+  </li><li>  <a href="https://www.ime.usp.br/%7Emac2166/python/ep1/esqueleto_ep1.py">def pos_ocupada(nlinhas, ncols, x, y, x0, y0, d):</a>
+  </li><li>  <a href="https://www.ime.usp.br/%7Emac2166/python/ep1/esqueleto_ep1.py">def imprime_tabuleiro(nlinhas, ncols, x0, y0, d):</a>
+  </li><li>  <a href="https://www.ime.usp.br/%7Emac2166/python/ep1/esqueleto_ep1.py">def move(nlinhas, ncols, x0, y0, d, direcao):</a>
+</li></ul>
+</blockquote>
+
+
+<p>
+  A descrição detalhada de cada uma dessas funções você encontra
+  <a href="https://www.ime.usp.br/%7Emac2166/python/ep1/esqueleto_ep1.py">aqui, no esqueleto do EP1</a>. Configure o seu navegador para trabalhar com
+  caracteres codificados em utf-8.
+  Você deve utilizar esse esqueleto para começar a resolver este exercício, <b>sem modificar</b> os protótipos
+  e comentários. Você deve editar o cabeçalho com suas informações,
+  incluir os seus próprios comentários se desejar e
+  substituir os <tt>prints</tt> com "vixe!" com as suas soluções.
+
+
+</p><h2>3. Dicas</h2>
+
+<ul>
+
+  <li> Lembre-se de que o objetivo principal deste exercício não é 
+construir um jogo, mas sim aprender a desenvolver programas bem 
+estruturados, usando funções e os demais recursos apresentados em aula. 
+Assim, não tente melhorar ou alterar o funcionamento do jogo descrito na
+ <a href="#secao2">Seção 2</a>, pois alterações no comportamento esperado do programa vão ser consideradas erros durante a correção.
+
+  </li><li> Não é necessário verificar a consistência dos dados 
+digitados pelos usuários, como, por exemplo, testar se o número de 
+linhas e de colunas do tabuleiro é maior que zero, ou se a posição 
+inicial (x,y) está dentro do tabuleiro ou ainda se o número do movimento
+ está no intervalo [1,5].
+
+  </li><li> Para imprimir algo com a função <code>print</code> sem incluir uma quebra de linha no final, use o parâmetro <code>end</code> para substituir a quebra de linha (caracter "\n") por qualquer outra string à sua escolha. Por exemplo, o código Python abaixo
+
+<blockquote>
+<code>
+print("Olá", end = ", ")<br>
+print("mundo!")<br>
+print("Tudo bem?")<br>
+</code>
+</blockquote>
+
+gera a seguinte saída:
+
+<font color="333333">
+<pre class="saida">Olá, mundo!
+Tudo bem?
+</pre>
+</font>
+
+
+  </li><li> Em Python é possível uma função retornar mais de um valor. Por exemplo, a função Python abaixo
+
+<blockquote>
+<pre class="codigo">def func(tempo):
+    """(int) -&gt; (int, int, int)
+    Devolve o tempo em horas, minutos e segundos.
+    ENTRADA
+    - tempo: tempo total em segundos.
+    """
+    h = tempo // 3600
+    m = (tempo % 3600) // 60
+    s = (tempo % 3600) % 60
+    return h, m, s
+</pre>
+</blockquote>
+
+devolve três valores. Esta função pode ser chamada da seguinte forma
+
+<blockquote>
+<pre class="codigo">h,m,s = func(tempo)
+print("horas: %d, minutos: %d, segundos: %d"%(h,m,s))
+</pre>
+</blockquote>
+  
+
+</li></ul>
+
+
+<a id="secao4"></a>
+<h2>4. Exemplos</h2>
+
+Considere os seguintes exemplos de saída do seu programa. Os números em
+<font color="ff0000">vermelho</font> foram digitados pelo jogador.
+
+<p><b>Exemplo 1:</b></p>
+<blockquote><font color="333333">
+<pre class="saida">=================================================
+         Bem-vindo ao Jogo da Cobrinha!          
+=================================================
+
+Número de linhas do tabuleiro : <font color="ff0000">3</font>
+Número de colunas do tabuleiro: <font color="ff0000">3</font>
+Posição x inicial da cobrinha : <font color="ff0000">2</font>
+Posição y inicial da cobrinha : <font color="ff0000">2</font>
+Tamanho da cobrinha           : <font color="ff0000">4</font>
+
+A COBRINHA NÃO PODE FICAR NA POSIÇÃO INICIAL INDICADA
+
+Tchau!
+</pre>
+</font></blockquote><font color="333333">
+</font>
+
+
+<p><b>Exemplo 2:</b></p>
+<blockquote><font color="333333">
+<pre class="saida">=================================================
+         Bem-vindo ao Jogo da Cobrinha!          
+=================================================
+
+Número de linhas do tabuleiro : <font color="ff0000">1</font>
+Número de colunas do tabuleiro: <font color="ff0000">3</font>
+Posição x inicial da cobrinha : <font color="ff0000">2</font>
+Posição y inicial da cobrinha : <font color="ff0000">0</font>
+Tamanho da cobrinha           : <font color="ff0000">3</font>
+
+#####
+#**C#
+#####
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">2</font>
+COLISÃO COM A PAREDE
+
+#####
+#**C#
+#####
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">1</font>
+COLISÃO COM SI MESMA
+
+#####
+#**C#
+#####
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">5</font>
+
+Tchau!
+</pre>
+</font></blockquote><font color="333333">
+</font>
+
+
+
+<p><b>Exemplo 3:</b></p>
+<blockquote><font color="333333">
+<pre class="saida">=================================================
+         Bem-vindo ao Jogo da Cobrinha!          
+=================================================
+
+Número de linhas do tabuleiro : <font color="ff0000">5</font>
+Número de colunas do tabuleiro: <font color="ff0000">5</font>
+Posição x inicial da cobrinha : <font color="ff0000">2</font>
+Posição y inicial da cobrinha : <font color="ff0000">2</font>
+Tamanho da cobrinha           : <font color="ff0000">3</font>
+
+#######
+#.....#
+#.....#
+#**C..#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">3</font>
+
+#######
+#.....#
+#..C..#
+#.**..#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">2</font>
+
+#######
+#.....#
+#..*C.#
+#..*..#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">3</font>
+
+#######
+#...C.#
+#..**.#
+#.....#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">2</font>
+
+#######
+#...*C#
+#...*.#
+#.....#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">4</font>
+
+#######
+#...**#
+#....C#
+#.....#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">4</font>
+
+#######
+#....*#
+#....*#
+#....C#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">2</font>
+COLISÃO COM A PAREDE
+
+#######
+#....*#
+#....*#
+#....C#
+#.....#
+#.....#
+#######
+
+1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo
+Digite o número do seu próximo movimento: <font color="ff0000">5</font>
+
+Tchau!
+</pre>
+</font></blockquote><font color="333333">
+</font>
+
+
+
+<p>&nbsp;
+</p><h2>5. Informações sobre entrega do EP</h2>
+
+<p>&nbsp;
+ Todo exercício-programa deve seguir as observações contidas  <a href="http://www.ime.usp.br/%7Emac2166/infoepsPy">aqui</a>, onde estão descritas as diretrizes para forma de entrega do exercício, aspectos importantes na avaliação etc.
+
+</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;
+</p><hr>
+
+
+
+
+
+
+
+
+
+</body></html>
