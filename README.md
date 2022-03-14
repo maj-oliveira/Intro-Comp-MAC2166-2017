@@ -8,6 +8,6 @@ This repository is focused in presenting 3 simple projects developed in the cour
 
 The first project is a terminal snake game. Image bellow:
 
-![](C:\Users\mathe\Python%20projects\Intro-Comp-MAC2166-2017\ep1-image.png)
+![](https://github.com/maj-oliveira/Intro-Comp-MAC2166-2017/blob/main/ep1-image.png)
 
 ## 
