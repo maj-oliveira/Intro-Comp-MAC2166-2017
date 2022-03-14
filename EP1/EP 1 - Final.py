@@ -14,7 +14,7 @@
   AINDA ASSIM, PODERÃO SER PUNIDOS POR DESONESTIDADE ACADÊMICA.
 
   Nome : Matheus Jose Oliveira dos Santos
-  NUSP : 10335826
+  NUSP : --------
   Turma: 9
   Prof.: Denis Maua
 

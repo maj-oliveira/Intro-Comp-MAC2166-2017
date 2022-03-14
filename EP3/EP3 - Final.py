@@ -13,7 +13,7 @@
   ENTENDO QUE EPS SEM ASSINATURA NÃO SERÃO CORRIGIDOS E,
   AINDA ASSIM, PODERÃO SER PUNIDOS POR DESONESTIDADE ACADÊMICA.
 
-  Nome : Matheus José Oliveira dos Santos
+  Nome : Matheus Jose Oliveira dos Santos
   NUSP : --------
   Turma: 9
   Prof.: Denis Maua
